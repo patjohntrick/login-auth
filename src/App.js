@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import Logged from "./components/Logged";
 import Login from "./components/Login";
 import Register from "./components/Register";
