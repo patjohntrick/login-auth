@@ -1,7 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+// import jwt from "jsonwebtoken";
 
 const Logged = () => {
+  const [user, setUser] = useState();
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     // const auth = jwt.decode(token);
+  //     // console.log(auth);
+  //   } else {
+  //     alert("Please login");
+  //     // Navigate("/login");
+  //   }
+  // }, []);
   return (
     <div className=" bg-white shadow-lg p-4 rounded ">
       <p className=" text-2xl text-center capitalize ">

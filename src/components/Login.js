@@ -1,9 +1,36 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ baseUri, user, setUser }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const logUser = {
+      email,
+      password,
+    };
+    await axios
+      .post(`${baseUri}/login`, logUser)
+      .then((res) => {
+        console.log(res.data.user);
+        if (res.data.user) {
+          localStorage.setItem("token", res.data.user);
+          alert("Login Successfully");
+          window.location.href = "/user";
+        } else {
+          alert("Wrong Credentials");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
   return (
-    <form className=" shadow-lg rounded bg-white text-neutral-900 p-4 space-y-2 ">
+    <form
+      onSubmit={handleSubmit}
+      className=" shadow-lg rounded bg-white text-neutral-900 p-4 space-y-2 "
+    >
       <p className=" text-center font-bold text-2xl text-sky-700">Login</p>
       <hr />
 
@@ -11,6 +38,8 @@ const Login = () => {
         type="email"
         placeholder="Email"
         name="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         className=" border-[1px] border-neutral-400 py-2 px-2 outline-none focus:border-sky-700 rounded w-[230px] "
       />
       <br />
@@ -18,6 +47,8 @@ const Login = () => {
         type="password"
         placeholder="Password"
         name="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         className=" border-[1px] border-neutral-400 py-2 px-2 outline-none focus:border-sky-700 rounded w-[230px] "
       />
       <br />

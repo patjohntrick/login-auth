@@ -23,7 +23,10 @@ const App = () => {
   return (
     <div className=" w-full h-screen flex justify-center items-center bg-sky-700 font-mono ">
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={<Login baseUri={baseUri} user={user} setUser={setUser} />}
+        />
         <Route
           path="/register"
           element={<Register baseUri={baseUri} user={user} setUser={setUser} />}
