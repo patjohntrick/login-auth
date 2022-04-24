@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import jwt from "jsonwebtoken";
+import jwt_decode from "jwt-decode";
 
 const Logged = () => {
   const [user, setUser] = useState({});
@@ -9,9 +9,7 @@ const Logged = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      // const auth = jwt.decode(token);
-      // console.log(auth);
-      const auth = jwt.decode(token);
+      const auth = jwt_decode(token);
       console.log(auth);
       if (!auth) {
         localStorage.removeItem("token");
